@@ -13,7 +13,7 @@ formularioLogin.addEventListener('submit', function(evento) {
     } else {
         evento.preventDefault();
         localStorage.setItem('mailUsuario', email);
-        console.log(localStorage.getItem('mailUsuario'));
+        localStorage.getItem('mailUsuario');
         window.location.href = 'index.html';
     }
     
