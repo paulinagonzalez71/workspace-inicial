@@ -137,9 +137,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         showProductsList();
     });
 
-    const searchInput = document.querySelector("[data-search]")
+ /*    const searchInput = document.querySelector("[data-search]")
 
-/*     searchInput.addEventListener("input", (e) => {
+    searchInput.addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase()
     currentProductsArray.forEach(product => {
         const isVisible = product.name.toLowerCase().includes(value) || product.toLowerCase().description.includes(value)
