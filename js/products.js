@@ -105,9 +105,11 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
+        document.getElementById("rangeFilterSearch").value = "";
 
         minCount = undefined;
         maxCount = undefined;
+        searchBar = undefined
 
         showProductsList();
     });
@@ -134,4 +136,17 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList();
     });
+
+    const searchInput = document.querySelector("[data-search]")
+
+/*     searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase()
+    currentProductsArray.forEach(product => {
+        const isVisible = product.name.toLowerCase().includes(value) || product.toLowerCase().description.includes(value)
+        product.element.class.toggle("hide", !isVisible)
+    })
+    }) 
+    
+    Intenté hacer el desafíate*/
+
 });
