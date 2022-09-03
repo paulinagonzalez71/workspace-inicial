@@ -105,11 +105,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
-        document.getElementById("rangeFilterSearch").value = "";
 
         minCount = undefined;
         maxCount = undefined;
-        searchBar = undefined
 
         showProductsList();
     });
