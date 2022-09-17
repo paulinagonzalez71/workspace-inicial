@@ -1,3 +1,5 @@
+const PRODUCTOS_URL = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem("catID")}.json`;
+const PRODUCTOS_INFO = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("productID")}.json`;
 const ORDER_ASC_BY_PRICE = "Min";
 const ORDER_DESC_BY_PRICE = "Max";
 const ORDER_BY_SOLD_COUNT = "Rel.";
@@ -35,6 +37,12 @@ function sortProducts(criteria, array){
     return result;
 }
 
+    function setProductID(id) {
+        localStorage.setItem("productID", id);
+        localStorage.getItem("productID")
+        window.location.href = "product-info.html"
+      };
+
 
 function showProductsList(){
 
@@ -45,7 +53,7 @@ function showProductsList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProductID(${product.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -63,6 +71,7 @@ function showProductsList(){
         }
 
         document.getElementById('lista-productos').innerHTML = htmlContentToAppend;
+
     }
 }
 
@@ -83,7 +92,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
+    getJSONData(PRODUCTOS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
 
             sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data.products);
@@ -134,17 +143,5 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList();
     });
-
- /*    const searchInput = document.querySelector("[data-search]")
-
-    searchInput.addEventListener("input", (e) => {
-    const value = e.target.value.toLowerCase()
-    currentProductsArray.forEach(product => {
-        const isVisible = product.name.toLowerCase().includes(value) || product.toLowerCase().description.includes(value)
-        product.element.class.toggle("hide", !isVisible)
-    })
-    }) 
     
-    Intenté hacer el desafíate*/
-
 });

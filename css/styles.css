@@ -188,3 +188,13 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.info-producto ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.info {
+  padding: 20px;
+}
