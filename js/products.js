@@ -37,13 +37,6 @@ function sortProducts(criteria, array){
     return result;
 }
 
-    function setProductID(id) {
-        localStorage.setItem("productID", id);
-        localStorage.getItem("productID")
-        window.location.href = "product-info.html"
-      };
-
-
 function showProductsList(){
 
     let htmlContentToAppend = "";

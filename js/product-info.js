@@ -1,5 +1,12 @@
 const INFO_PRODUCTOS = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("productID")}.json`;
 const COMMENTS_URL = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("productID")}.json`;
+let arrayOfComments = [];
+let botonEnviar = document.getElementById('agregar'); 
+let esVacio = (JSON.parse(localStorage.getItem('lista')) == undefined); 
+if (!esVacio) {
+    arrayOfComments = JSON.parse(localStorage.getItem('lista'));
+}
+ 
 
 document.addEventListener("DOMContentLoaded", function(e){
     fetch(INFO_PRODUCTOS)
@@ -12,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         htmlContentToAppend = `
         <div class ="row info">
             <div class="d-flex w-100 justify-content-between" titulo>
-                <h2>${product.name}</h2>
+                <h2 class="m-2">${product.name}</h2>
             </div>
             <hr>
             <div class="d-flex w-100 justify-content-between info-producto">
@@ -47,9 +54,10 @@ document.addEventListener("DOMContentLoaded", function(e){
         let image = product.images[i];
                 htmlContentToAppendImage += `
 
-                        <div class="col-2 d-flex img-producto"">
+                        <div class="col-2 d-flex img-producto btn">
                                 <img src="${image}" class="img-thumbnail" id="img${i}">
-                        </div>`
+                        </div>
+                        `;
     };
 
         document.getElementById("info-imagenes").innerHTML = htmlContentToAppendImage;
@@ -64,12 +72,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         console.log(comments);
         let htmlContentToAppend = " ";
 
-        htmlContentToAppend += `       
-        <div class ="d-flex w-100 justify-content-between">
-            <h3>Comentarios</h3>
-        </div>
-            `;
-
         for (let comment of comments) {
             
         htmlContentToAppend +=  `
@@ -80,7 +82,57 @@ document.addEventListener("DOMContentLoaded", function(e){
             `;
         };
 
-        document.getElementById("lista-comentarios").innerHTML = htmlContentToAppend;  
+        document.getElementById("lista-comentarios").innerHTML += htmlContentToAppend;  
     
     }); 
+
+    fetch(INFO_PRODUCTOS)
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+
+        let product = datos;
+        let htmlContentToAppend = "";
+
+        for (let i = 0; i < product.relatedProducts.length; i++){
+
+            let image = product.relatedProducts[i].image;
+            let nombre = product.relatedProducts[i].name;
+            htmlContentToAppend += `
+            <div onclick="setProductID(${product.relatedProducts[i].id})" class="col-2 img-producto btn cursor-active">
+                <img src="${image}" class="img-thumbnail" id="img${i}">
+                <p>${nombre}</p>
+            </div>
+            `;
+                        
+        };
+        document.getElementById("image-products").innerHTML += htmlContentToAppend;
+  });
+
+ botonEnviar.addEventListener('click', function(e){
+    let newComment = document.getElementById('nuevo-comentario').value;
+
+    if (newComment !== ""){
+        arrayOfComments.push(newComment);
+        document.getElementById('nuevo-comentario').value;
+    }
+  }); 
+  agregarComentarios(arrayOfComments);
+
 });
+
+
+function agregarComentarios(arrayOfComments){
+    let htmlContentToAppend = "";
+   
+    for (comentario of arrayOfComments){
+        htmlContentToAppend +=  `
+        <div class="border rounded-5 cont">
+            <p><b>${comentario.user}</b>-<span class="text-muted">${comentario.dateTime}-</span><span class="fa fa-star checked">${comentario.score}</span></p>
+            <p>${comentario}</p>
+        </div>
+        `;
+    }
+    document.getElementById("lista-comentarios").innerHTML += htmlContentToAppend;
+}
+
+

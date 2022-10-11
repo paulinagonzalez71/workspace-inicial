@@ -31,7 +31,16 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a id="nav-mail"></a>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a id="nav-mail"></a>
+              </button>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                  <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                  <li><a class="dropdown-item" href="login.html" onclick="cerrarSesion()">Cerrar sesión</a></li>
+              </ul>
+          </div>
           </li>
         </ul>
       </div>
@@ -46,10 +55,11 @@
         
         </div>
         <div id="lista-comentarios" class="col-sm-8">
+          <h3 class="m-3">Comentarios</h3>
 
         </div>
         <div id="formulario">
-          <h3>Comentar</h3>
+          <h3 class="m-3">Comentar</h3>
             <p class="form-label">Tú opinión:</p>
               <textarea class="comentario col-sm-4 border rounded-3 cont" id="nuevo-comentario"></textarea>
             <p class="form-label">Tú puntuación:</p>
@@ -60,7 +70,14 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-            <input type="submit" value="Enviar">
+            <button type="button" id="agregar">Enviar</button>
+            <hr>
+          </div>
+          <div id="related-products" class="row">
+            <h3 class="m-4">Productos Relacionados</h3>
+            <div id="image-products" class="row">
+              
+            </div>
           </div>
       </div>
     </div>

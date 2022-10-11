@@ -51,7 +51,18 @@ htmlContentToAppend += `
 <a class="nav-link" 
 <p>${localStorage.getItem('mailUsuario')}</p>
 </a>
-`
+`;
 document.getElementById('nav-mail').innerHTML += htmlContentToAppend;
 
 });
+
+function setProductID(id) {
+  localStorage.setItem("productID", id);
+  window.location.href = "product-info.html"
+};
+
+function cerrarSesion() {
+  localStorage.removeItem('mailUsuario')
+  let htmlContentToAppend = "";
+  document.getElementById("nav-mail").innerHTML += htmlContentToAppend;
+}
