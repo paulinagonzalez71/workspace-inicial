@@ -17,9 +17,10 @@ document.addEventListener("DOMContentLoaded", function(e){
         let htmlContentToAppend = "";
 
         htmlContentToAppend = `
-        <div class ="row info">
-            <div class="d-flex w-100 justify-content-between" titulo>
-                <h2 class="m-2">${product.name}</h2>
+        <div class ="row">
+            <div class="m-1 mt-4 d-flex w-100 justify-content-between">
+                <h2 class="mb-2">${product.name}</h2>
+                <button class="btn btn-primary shop-item-button float-end" type="button">Comprar</button>
             </div>
             <hr>
             <div class="d-flex w-100 justify-content-between info-producto">
@@ -54,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         let image = product.images[i];
                 htmlContentToAppendImage += `
 
-                        <div class="col-2 d-flex img-producto btn">
-                                <img src="${image}" class="img-thumbnail" id="img${i}">
+                        <div class="col-2 mb-3 d-flex img-producto btn">
+                                <img src="${image}" class="img-thumbnail m-2" id="img${i}">
                         </div>
                         `;
     };
@@ -75,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         for (let comment of comments) {
             
         htmlContentToAppend +=  `
+
             <div class="border rounded-5 cont">
                 <p><b>${comment.user}</b>-<span class="text-muted">${comment.dateTime}-</span><span class="fa fa-star checked">${comment.score}</span></p>
                 <p>${comment.description}</p>
@@ -135,4 +137,32 @@ function agregarComentarios(arrayOfComments){
     document.getElementById("lista-comentarios").innerHTML += htmlContentToAppend;
 }
 
+//Escucho cuando se hace click en un boton de comprar
 
+/* let addBtns = document.querySelectorAll('.shop-item-button');
+addBtns = [...addBtns];
+
+let listaArticulos = document.getElementById('lista-articulos');
+
+addBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        // Agrego productos al carrito
+        listaArticulos.innerHTML += `
+        <table class="table mb-4">
+        <tbody>
+            <tr>
+            <th><img src="${articleData.image}" class="col-sm-3"></th>
+            <td>${articleData.name}</td>
+            <td>${articleData.currency} ${articleData.unitCost}</td>
+            <td><input type="${articleData.count}" placeholder="${articleData.count}" class="col-sm-4 rounded-4 cont"></td>
+            <td>${articleData.currency} ${subtotal}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+        `;
+
+    });
+});
+ */

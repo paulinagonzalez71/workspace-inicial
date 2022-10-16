@@ -42,6 +42,8 @@ function showProductsList(){
     let htmlContentToAppend = "";
     for(let product of currentProductsArray){
 
+        console.log(currentProductsArray);
+
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
@@ -56,7 +58,7 @@ function showProductsList(){
                             <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
                             <small class="text-muted">${product.soldCount} vendidos</small>
                         </div>
-                        <p class="mb-1">${product.description}</p>
+                        <p class="mb-1 text-start">${product.description}</p>
                     </div>
                 </div>
             </div>

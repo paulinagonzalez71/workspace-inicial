@@ -195,6 +195,6 @@ a.custom-card:hover {
 	padding: 0;
 }
 
-.info {
-  padding: 20px;
+.hide {
+  color: white;
 }
