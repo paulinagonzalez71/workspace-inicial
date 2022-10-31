@@ -53,7 +53,7 @@
       <div class="row info-producto justify-content-md-center">
         <div class="col-md-9 order-md-1">
           <h4 class="mb-4">Artículos a comprar</h4>
-          <div id="lista-articulos" class="card mb-4">
+          <div id="lista-articulos" class="card mb-2">
               <div class="card-body p-4">
 
                 <div class="row align-items-center">
@@ -92,14 +92,16 @@
 
             </div>
           </div>
-          <h4 class="mb-3 mt-4">Tipos de envío</h4>
+          <h4 class="mb-4 mt-4">Tipos de envío</h4>
+          <form action="#" method="get" id="form-info">
           <div class="form-check mb-3">
             <label class="form-check-label" for="premium">Premium 2 a 5 días (%15)</label>
-            <input class="form-check-input" type="radio" name="tipo-envio" checked><br>
+            <input id="input-premium" class="form-check-input" type="radio" name="tipo-envio" value="0.15"><br>
             <label class="form-check-label" for="express">Express 5 a 8 días (%7)</label>
-            <input class="form-check-input" type="radio" name="tipo-envio"><br>
+            <input id="input-express" class="form-check-input" type="radio" name="tipo-envio" value="0.7"><br>
             <label class="form-check-label" for="standard">Standard 12 a 15 días (%5)</label>
-            <input class="form-check-input" type="radio" name="tipo-envio"><br>
+            <input id="input-standard" class="form-check-input" type="radio" name="tipo-envio" value="0.5"><br>
+            <p class="invalid-feedback" id="feedback-envio" hidden>Debe seleccionar un tipo de envío.</p>
           </div>
           <h4 class="mb-4 mt-4">Dirección de envío</h4>
           <div class="mb-4 w-75">
@@ -107,22 +109,45 @@
               <div class="col-md-8 col-sm-8">
                 <label for="calle" class="form-label col-sm-2">Calle</label>
                 <div class="col-md-8">
-                  <input class="border rounded-3 form-control" type="text">
+                  <input id="calle" class="border rounded-3 form-control" type="text">
+                  <p class="invalid-feedback" id="feedback-calle" hidden>Debe ingresar una calle.</p>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
-                <label for="numero-puerta" class="form-label col-sm-2">Número</label>
-                <input class="form-control border rounded-3" type="text">
+                <label for="num-puerta" class="form-label col-sm-2">Número</label>
+                <div class="col-md-8">
+                <input id="num-puerta" class="form-control border rounded-3" type="text">
+                <p class="invalid-feedback" id="feedback-num-puerta" hidden>Debe ingresar un número de puerta.</p>
+                </div>
               </div>
           </div>
           <div class="col-sm-8">
             <label for="esquina" class="form-label col-sm-2">Esquina</label>
             <div class="col-md-8">
-            <input class="form-control border rounded-3" type="text">
+            <input id="esquina" class="form-control border rounded-3" type="text">
+            <p class="invalid-feedback" id="feedback-esquina" hidden>Debe ingresar una esquina.</p>
           </div>
           </div>
         </div>
         <hr>
+        <h4 class="mb-4 mt-4">Costos</h4>
+        <div id="costos" class="card mb-3">
+
+        </div>
+        <hr>
+            <h4 class="mb-4 mt-4">Forma de pago</h4>
+            <div class="d-inline col-sm-12">
+              <div class="row" id="metodo-pago">
+                <p id="feedback-seleccion">No ha seleccionado</p><br> 
+              </div>
+              <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+                data-bs-target="#modalFormaPago" id="forma-pago-btn">Seleccionar</button>
+                <p class="invalid-feedback" id="feedback-pago" style="display: block" hidden>Debe seleccionar un método de pago.</p>
+            </div>
+            <div class="row g-3">
+              <button class="btn btn-primary" type="submit">Finalizar comprar</button>
+            </div>
+          </form>
       </div>
      </div>
   </main>
@@ -136,6 +161,44 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
+  <div class="modal fade" id="modalFormaPago" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Forma de pago</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="formulario-pago" class="form-check mb-3">
+            <label class="form-check-label" for="credito">Tarjeta de crédito</label>
+            <input id="input-credito" class="form-check-input" type="radio" name="tipo-pago"><br>
+            <hr>
+            <label for="numero-tarjeta" class="form-label col-sm-6">Número de Tarjeta</label>
+            <input id="numero-tarjeta" class="form-control border rounded-3 col-sm-6" type="text" required>
+            <label for="cod-seguridad" class="form-label col-sm-3">Código de seg.</label>
+            <input id="cod-seguridad" class="form-control border rounded-3 col-sm-3" type="text" required>
+            <label for="vencimiento" class="form-label col-sm-6">Vencimiento (MM/AA)</label>
+            <input id="vencimiento" class="form-control border rounded-3 col-sm-6" type="text" required>
+            <hr>
+            <label class="form-check-label" for="transferencia">Transferencia bancaria</label>
+            <input id="input-transfer" class="form-check-input" type="radio" name="tipo-pago"><br>
+            <hr>
+            <label for="numero-cuenta" class="form-label col-sm-6">Número de cuenta</label>
+            <input id="numero-cuenta" class="form-control border rounded-3 col-sm-6" type="text" required>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="form-check">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
