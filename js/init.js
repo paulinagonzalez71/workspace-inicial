@@ -65,4 +65,9 @@ function cerrarSesion() {
   localStorage.removeItem('mailUsuario')
   let htmlContentToAppend = "";
   document.getElementById("nav-mail").innerHTML += htmlContentToAppend;
+  localStorage.removeItem('fName');
+  localStorage.removeItem('lName');
+  localStorage.removeItem('mName');
+  localStorage.removeItem('sLName');
+  localStorage.removeItem('numTel');
 }

@@ -137,32 +137,4 @@ function agregarComentarios(arrayOfComments){
     document.getElementById("lista-comentarios").innerHTML += htmlContentToAppend;
 }
 
-//Escucho cuando se hace click en un boton de comprar
 
-/* let addBtns = document.querySelectorAll('.shop-item-button');
-addBtns = [...addBtns];
-
-let listaArticulos = document.getElementById('lista-articulos');
-
-addBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-        // Agrego productos al carrito
-        listaArticulos.innerHTML += `
-        <table class="table mb-4">
-        <tbody>
-            <tr>
-            <th><img src="${articleData.image}" class="col-sm-3"></th>
-            <td>${articleData.name}</td>
-            <td>${articleData.currency} ${articleData.unitCost}</td>
-            <td><input type="${articleData.count}" placeholder="${articleData.count}" class="col-sm-4 rounded-4 cont"></td>
-            <td>${articleData.currency} ${subtotal}</td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
-
-        `;
-
-    });
-});
- */
